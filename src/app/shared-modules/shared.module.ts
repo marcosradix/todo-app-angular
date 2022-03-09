@@ -9,6 +9,9 @@ import {MatDividerModule} from '@angular/material/divider';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -24,7 +27,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatDividerModule,
     FlexLayoutModule,
     MatIconModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatMenuModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }

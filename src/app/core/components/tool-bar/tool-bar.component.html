@@ -1,4 +1,10 @@
 <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>Todo App</span>
-    </mat-toolbar-row>
+  <mat-toolbar-row>
+    
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/">Criar Atividade</a>
+      <button mat-menu-item routerLink="/task">Atividades</button>
+    </mat-menu>
+    <span>Todo App</span>
+  </mat-toolbar-row>

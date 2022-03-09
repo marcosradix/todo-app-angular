@@ -1,11 +1,11 @@
+import { TaskComponent } from './task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
 
 const routes: Routes = [
   {
-    path: "",
-    component: FormTodoComponent
+    path: "task",
+    component:TaskComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TodoRoutingModule { }
+export class TaskRoutingModule { }
