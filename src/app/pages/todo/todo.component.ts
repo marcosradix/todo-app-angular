@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  update(event: any) {
+    if("/task" == this.router.url){
+      console.log("você chamou adionar afazeres");
+    }
+    if("/" == this.router.url){
+      console.log("você chamou adionar tarefa");
+    }
+
+    console.log(event);
+  }
 }

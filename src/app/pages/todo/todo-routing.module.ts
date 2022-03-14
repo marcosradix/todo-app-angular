@@ -3,10 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    component: FormTodoComponent
-  }
+
 ];
 
 @NgModule({

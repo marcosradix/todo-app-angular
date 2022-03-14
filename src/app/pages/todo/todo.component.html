@@ -6,7 +6,10 @@
       <mat-card-title class="center-title">Adicionar um novo item</mat-card-title>
       <br>
       <mat-card-content>
-        <router-outlet></router-outlet>
+        <router-outlet>
+          <app-form-todo (execute)="update($event)"></app-form-todo>
+          <br>
+        </router-outlet>
       </mat-card-content>
     </mat-card>
 </div>

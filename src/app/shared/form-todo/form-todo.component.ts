@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-form-todo',
@@ -8,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class FormTodoComponent implements OnInit {
   public name: String = "";
 
+
+  @Output("execute") execute:EventEmitter<String> =new EventEmitter<String>();
   constructor() { }
 
+  update() {
+    this.execute.emit(this.name);
+  }
 
   ngOnInit(): void {
-  }
-  ok(){
-    console.log(`name: ${this.name}`);
-    this.name = "";
   }
 }
