@@ -1,9 +1,14 @@
-<div fxLayout="row" fxLayoutAlign="center">
+<form [formGroup]="myForm" fxLayout="column" fxLayoutAlign="center" >
 
-    <mat-form-field appearance="fill" fxFlex="60">
+    <mat-form-field fxFlex="30">
         <mat-label>Nome da tarefa</mat-label>
-            <input type="text" matInput placeholder="Ex. Fazer café" [(ngModel)]="name" required />
+        <input type="text" matInput placeholder="Ex. Coisas de casa" formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field fxFlex="80">
+        <mat-label>Descrição</mat-label>
+        <input type="text" matInput placeholder="Ex. Fazer café" formControlName="description" required />
     </mat-form-field>
 
     <button mat-raised-button color="primary" (click)="update()" class="separate-button">Salvar</button>
-</div>
+</form>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlApi: "https://todo-app-net.herokuapp.com/"
+  urlApi: "https://todo-app-net.herokuapp.com"
 };
 
 /*
