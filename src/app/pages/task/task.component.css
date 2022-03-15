@@ -12,3 +12,7 @@
   .center-title{
     text-align: center;
 }
+
+.mat-column-select {
+  overflow: initial;
+}

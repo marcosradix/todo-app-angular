@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
 import { TaskService } from 'src/app/core/services/task/task.service';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,27 +13,28 @@ import { TaskService } from 'src/app/core/services/task/task.service';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements AfterViewInit {
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns = ['name', 'description'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
-  constructor(private taskService: TaskService) { }
-  public formTodo: FormTodoComponent = new FormTodoComponent();
+  constructor(private taskService: TaskService, private router: Router) { }
+
+
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  showTodos(taskId: number) {
+    console.log("task id: " + taskId);
+    this.router.navigate(['/todo', taskId]);
+  }
 
   update(event: any) {
     console.log("você chamou adionar tarefa");
     this.taskService.createTask(event).subscribe(data => {
-      console.log("feito: "+JSON.stringify( data));
+      console.log("feito: " + JSON.stringify(data));
     });
   }
-  /**
-   * Set the paginator after the view init since this component will
-   * be able to query its view for the initialized paginator.
-   */
+
   ngAfterViewInit() {
 
-  }
-  openDialog(type: String, element: any) {
-    console.log(this.formTodo.myForm.value);
   }
 }
 

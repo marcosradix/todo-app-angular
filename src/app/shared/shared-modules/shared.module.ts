@@ -12,7 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormTodoComponent } from '../shared/form-todo/form-todo.component';
+import { FormTodoComponent } from '../form-todo/form-todo.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [FormTodoComponent],
@@ -28,7 +29,9 @@ import { FormTodoComponent } from '../shared/form-todo/form-todo.component';
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule,],
+    ReactiveFormsModule,
+    MatCheckboxModule
+  ],
   exports: [
     MatButtonModule,
     MatFormFieldModule,
@@ -43,7 +46,8 @@ import { FormTodoComponent } from '../shared/form-todo/form-todo.component';
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    FormTodoComponent
+    FormTodoComponent,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }
