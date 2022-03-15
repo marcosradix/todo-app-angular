@@ -4,16 +4,12 @@ import { CommonModule } from '@angular/common';
 
 import { TodoRoutingModule } from './todo-routing.module';
 import { TodoComponent } from './todo.component';
-import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
-import { ToolBarComponent } from 'src/app/core/components/tool-bar/tool-bar.component';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
-    TodoComponent,
-    FormTodoComponent,
-    ToolBarComponent
+    TodoComponent
   ],
   imports: [
     CommonModule,

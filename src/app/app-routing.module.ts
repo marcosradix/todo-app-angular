@@ -1,11 +1,11 @@
-import { TodoComponent } from './pages/todo/todo.component';
+import { DefaultComponent } from './core/components/default/default.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path:'',
-    component: TodoComponent,
+    component: DefaultComponent,
     children:[
       {
         path: '',

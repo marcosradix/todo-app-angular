@@ -1,15 +1,9 @@
 <div class="container">
-    <app-tool-bar></app-tool-bar>
-
   <mat-divider></mat-divider>
     <mat-card>
-      <mat-card-title class="center-title">{{title}}</mat-card-title>
       <br>
       <mat-card-content>
-        <router-outlet>
           <app-form-todo (execute)="update($event)" #formTodo></app-form-todo>
-          <br>
-        </router-outlet>
       </mat-card-content>
     </mat-card>
 </div>

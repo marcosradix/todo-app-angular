@@ -1,14 +1,25 @@
-<form [formGroup]="myForm" fxLayout="column" fxLayoutAlign="center" >
 
-    <mat-form-field fxFlex="30">
-        <mat-label>Nome da tarefa</mat-label>
-        <input type="text" matInput placeholder="Ex. Coisas de casa" formControlName="name" required />
-    </mat-form-field>
 
-    <mat-form-field fxFlex="80">
-        <mat-label>Descrição</mat-label>
-        <input type="text" matInput placeholder="Ex. Fazer café" formControlName="description" required />
-    </mat-form-field>
+<div class="container">
+    <mat-divider></mat-divider>
+      <mat-card>
+          <mat-card-title class="center-title">{{title}}</mat-card-title>
+        <br>
+        <mat-card-content>
+            <form [formGroup]="myForm" fxLayout="column" fxLayoutAlign="center" >
 
-    <button mat-raised-button color="primary" (click)="update()" class="separate-button">Salvar</button>
-</form>
+                <mat-form-field fxFlex="30">
+                    <mat-label>Nome da tarefa</mat-label>
+                    <input type="text" matInput placeholder="Ex. Coisas de casa" formControlName="name" required />
+                </mat-form-field>
+            
+                <mat-form-field fxFlex="80">
+                    <mat-label>Descrição</mat-label>
+                    <input type="text" matInput placeholder="Ex. Fazer café" formControlName="description" required />
+                </mat-form-field>
+            
+                <button mat-raised-button color="primary" (click)="update()" class="separate-button">Salvar</button>
+            </form>
+        </mat-card-content>
+      </mat-card>
+  </div>

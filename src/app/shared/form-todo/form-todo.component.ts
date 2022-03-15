@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-todo',
@@ -9,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class FormTodoComponent implements OnInit {
   public name: String = "";
   public description: String = "";
+ 
 
   public myForm: FormGroup = new FormGroup({
     name: new FormControl(),
@@ -16,14 +18,19 @@ export class FormTodoComponent implements OnInit {
   });
 
   @Output("execute") execute: EventEmitter<String> = new EventEmitter<String>();
-
-  constructor(private formBuilder?: FormBuilder) { }
+  title = "";
+  constructor(private formBuilder?: FormBuilder, private router?: Router) { }
 
   update() {
     this.execute.emit(this.myForm.value);
     this.myForm.reset({});
 
   }
+
+  ngAfterContentChecked(): void {
+    this.title = "/task" == this.router!.url ? "Criar nova atividade" : "Criar nova tarefa";
+  }
+
   createForm() {
     this.myForm = this.formBuilder!.group({
       name: '',
