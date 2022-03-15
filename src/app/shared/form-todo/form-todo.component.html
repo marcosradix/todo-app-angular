@@ -13,7 +13,7 @@
                     <input type="text" matInput placeholder="Ex. Coisas de casa" formControlName="name" required />
                 </mat-form-field>
             
-                <mat-form-field fxFlex="80">
+                <mat-form-field fxFlex="80" *ngIf="render">
                     <mat-label>Descrição</mat-label>
                     <input type="text" matInput placeholder="Ex. Fazer café" formControlName="description" required />
                 </mat-form-field>

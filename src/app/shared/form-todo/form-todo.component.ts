@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 export class FormTodoComponent implements OnInit {
   public name: String = "";
   public description: String = "";
+
+  @Input()
+  public render: boolean = false;
  
 
   public myForm: FormGroup = new FormGroup({

@@ -14,6 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormTodoComponent } from '../form-todo/form-todo.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CommonModule } from '@angular/common';  
 
 @NgModule({
   declarations: [FormTodoComponent],
@@ -30,7 +31,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CommonModule
   ],
   exports: [
     MatButtonModule,
