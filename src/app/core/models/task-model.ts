@@ -1,6 +1,7 @@
-export interface TaskModel {
-    id: number;
-    name: string;
-    description: string;
-    isDone: boolean;
+export class TaskModel {
+    id?: number;
+    name?: string;
+    description?: string;
+    isDone?: boolean;
+    
  }

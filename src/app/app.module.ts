@@ -9,7 +9,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared-modules/shared.module';
 import { HttpClientModule } from '@angular/common/http';
-import { DefaultComponent } from './core/components/default/default.component';  
+import { DefaultComponent } from './core/components/default/default.component';
+import { ToastrModule } from 'ngx-toastr';
+  
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { DefaultComponent } from './core/components/default/default.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot(),
   ],
   providers: [TaskService, TodoService],
   bootstrap: [AppComponent]

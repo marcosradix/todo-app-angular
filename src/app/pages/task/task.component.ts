@@ -5,6 +5,7 @@ import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component'
 import { TaskService } from 'src/app/core/services/task/task.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class TaskComponent implements AfterViewInit {
   displayedColumns = ['name', 'description'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
-  constructor(private taskService: TaskService, private router: Router) { }
+  constructor(private taskService: TaskService, private router: Router, private toastr: ToastrService) { }
 
 
 
@@ -28,9 +29,25 @@ export class TaskComponent implements AfterViewInit {
 
   update(event: any) {
     console.log("você chamou adionar tarefa");
-    this.taskService.createTask(event).subscribe(data => {
-      console.log("feito: " + JSON.stringify(data));
+
+
+
+    this.taskService.createTask(event).subscribe({
+      next: (v) => console.log("feito: " + JSON.stringify(v)),
+      error: (e) => {
+        this.toastr.error("erro ao salvar", "Erro");
+        console.log(e);
+      },
+      complete: () => this.toastr.success('Savo com sucesso! ', 'Sucesso!')
     });
+
+    // this.taskService.createTask(event).subscribe(data => {
+    //   this.toastr.success('Savo com sucesso! ', 'Sucesso!');
+    //   console.log("feito: " + JSON.stringify(data));
+    // }, error => {
+    //   this.toastr.error("erro ao salvar", "Erro");
+    //   console.log(error);
+    // });
   }
 
   ngAfterViewInit() {

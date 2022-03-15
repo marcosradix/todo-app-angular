@@ -4,6 +4,7 @@ import { AfterContentChecked, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo',
@@ -14,7 +15,7 @@ export class TodoComponent implements OnInit, AfterContentChecked {
   displayedColumns = ['select', 'position', 'name', 'weight', 'symbol'];
   dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
 
-  constructor(private router: Router, private taskService: TaskService) { }
+  constructor(private router: Router, private taskService: TaskService, private toastr: ToastrService) { }
   public formTodo: FormTodoComponent = new FormTodoComponent();
 
   selection = new SelectionModel<Element>(true, []);
@@ -41,6 +42,7 @@ export class TodoComponent implements OnInit, AfterContentChecked {
   }
 
   update(event: any) {
+    this.toastr.success('Sucesso!', 'Savo com sucesso!');
       console.log("você chamou adionar atividades: ", event);
     }
   
