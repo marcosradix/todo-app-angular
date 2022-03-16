@@ -20,4 +20,8 @@ export class TaskService {
   allTodosFromTaskId(taskId: number): Observable<TaskModel[]>{
     return this.httpClient.get<TaskModel[]>(`${this.BASE_URL}/todos/task/${taskId}`);
 }
+
+allTasks(): Observable<TaskModel[]>{
+  return this.httpClient.get<TaskModel[]>(`${this.BASE_URL}/todos/tasks`);
+}
 }
