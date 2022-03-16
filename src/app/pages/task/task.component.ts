@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
 import { TaskService } from 'src/app/core/services/task/task.service';
-import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,9 +14,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements AfterViewInit, OnInit {
-  displayedColumns = ['#', 'name', 'createdAt'];
+  displayedColumns = ['#', 'name', 'createdAt', 'actions'];
   data: TaskModel[] = [];
   dataSource = new MatTableDataSource<TaskModel>(this.data);
+  @ViewChild(FormTodoComponent, {static: false}) formTodo!: FormTodoComponent;
+  taskEditId?: number;
 
   constructor(private taskService: TaskService, private router: Router, private toastr: ToastrService) { }
   ngOnInit(): void {
@@ -37,14 +38,15 @@ export class TaskComponent implements AfterViewInit, OnInit {
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  showTodos(taskId: number) {
+  showTodos(taskId?: number) {
     console.log("task id: " + taskId);
     this.router.navigate(['/todo', taskId]);
   }
 
   update(event: any) {
     console.log("você chamou adionar tarefa");
-
+    let task: TaskModel = event; 
+    task.id = this.taskEditId;
     this.taskService.createTask(event).subscribe({
       next: (v) => console.log("feito: " + JSON.stringify(v)),
       error: (e) => {
@@ -54,18 +56,38 @@ export class TaskComponent implements AfterViewInit, OnInit {
       complete: () => {
         this.toastr.success('Salvo com sucesso! ', 'Sucesso!');
         this.loadTable();
+        this.taskEditId = undefined;
       }
     });
-
-    // this.taskService.createTask(event).subscribe(data => {
-    //   this.toastr.success('Savo com sucesso! ', 'Sucesso!');
-    //   console.log("feito: " + JSON.stringify(data));
-    // }, error => {
-    //   this.toastr.error("erro ao salvar", "Erro");
-    //   console.log(error);
-    // });
   }
-
+  openDialog(type: String, element: TaskModel) {
+    
+    if('visualizar' == type){
+      this.showTodos(element.id);
+    }
+    if('deletar' == type){
+      this.taskService.deleteTaskById(element.id).subscribe({
+        next: (v) => console.log("feito: " + JSON.stringify(v)),
+        error: (e) => {
+          this.toastr.error("erro ao remover", "Erro");
+          console.log(e);
+        },
+        complete: () => {
+          this.toastr.success('Removido com sucesso! ', 'Sucesso!');
+          this.loadTable();
+        }
+      });
+    }
+    
+    if('editar' == type){
+      console.log(type, element);
+      this.taskEditId = element.id;
+      this.formTodo.myForm.setValue({
+        name: element.name,
+        description: ""
+      });
+    }
+  }
   ngAfterViewInit() {
 
   }

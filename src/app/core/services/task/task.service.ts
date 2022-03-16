@@ -24,4 +24,8 @@ export class TaskService {
 allTasks(): Observable<TaskModel[]>{
   return this.httpClient.get<TaskModel[]>(`${this.BASE_URL}/todos/tasks`);
 }
+
+deleteTaskById(taskId?: number): Observable<void>{
+  return this.httpClient.delete<void>(`${this.BASE_URL}/todos/${taskId}`);
+}
 }

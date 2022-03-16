@@ -21,4 +21,8 @@ export class TodoService {
   updateTodoStatus( todoId?: number, statusUpdateDto?: StatusUpdateDto): Observable<TodoModel> {
     return this.http.patch<TodoModel>(`${this.BASE_URL}/todos/${todoId}`, statusUpdateDto);
   }
+
+  deleteTodoById(todoId?: number): Observable<void> {
+    return this.http.delete<void>(`${this.BASE_URL}/todos/todo/${todoId}`);
+  }
 }

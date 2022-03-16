@@ -1,7 +1,7 @@
 import { TodoModel } from './../../core/models/todo-model';
 import { FormTodoComponent } from 'src/app/shared/form-todo/form-todo.component';
 import { TaskService } from './../../core/services/task/task.service';
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -17,18 +17,20 @@ import { StatusUpdateDto } from 'src/app/core/models/status-update-dto';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit, AfterContentChecked {
-  displayedColumns = ['select', 'name', 'description', 'isDone', 'createdAt'];
+  displayedColumns = ['select', 'name', 'description', 'isDone', 'createdAt', 'actions'];
   data: TodoModel[] = [];
   dataSource = new MatTableDataSource<TodoModel>(this.data);
-  taskId!: number;
+  taskId?: number;
+  todoId?: number;
   constructor(
     private router: Router,
     private taskService: TaskService,
     private todoService: TodoService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
-  public formTodo: FormTodoComponent = new FormTodoComponent();
+
+  @ViewChild(FormTodoComponent, {static: false}) formTodo!: FormTodoComponent;
 
   selection = new SelectionModel<TodoModel>(true, []);
 
@@ -83,6 +85,7 @@ updateStatus(event: any, row: TodoModel){
     let { name, description } = event;
     let todos: TodoModel[] = [];
     let todo: TodoModel = new TodoModel();
+    todo.id = this.todoId;
     todo.task = new TaskModel();
     todo.task!.id = this.taskId;
     todo.name = name;
@@ -102,5 +105,26 @@ updateStatus(event: any, row: TodoModel){
       }
     });
   }
-
+  openDialog(type: String, element: TodoModel) {
+    console.log(type, element);
+    if('deletar' == type){
+      this.todoService.deleteTodoById(element.id).subscribe({
+        error: (e) => {
+          this.toastr.error("erro ao deletar", "Erro");
+          console.log(e);
+        },
+        complete: () => {
+          this.toastr.success('Removido com sucesso! ', 'Sucesso!');
+          this.loadTable();
+        }
+      });
+    }
+    if('editar' == type){
+      this.todoId = element.id;
+      this.formTodo.myForm.setValue({
+        name: element.name, 
+        description: element.description
+      });
+    }
+  }
 }
