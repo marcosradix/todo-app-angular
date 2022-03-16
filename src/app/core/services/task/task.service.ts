@@ -15,4 +15,9 @@ export class TaskService {
   createTask(task: TaskModel): Observable<TaskModel>{
       return this.httpClient.post<TaskModel>(`${this.BASE_URL}/todos/task`, task);
   }
+
+  
+  allTodosFromTaskId(taskId: number): Observable<TaskModel[]>{
+    return this.httpClient.get<TaskModel[]>(`${this.BASE_URL}/todos/task/${taskId}`);
+}
 }

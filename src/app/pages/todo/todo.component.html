@@ -18,33 +18,33 @@
                 <mat-cell *matCellDef="let row">
                   <mat-checkbox (click)="$event.stopPropagation()"
                                 (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)">
+                                [checked]="selection.isSelected(row) || row.isDone">
                   </mat-checkbox>
                 </mat-cell>
               </ng-container>
           
               <!-- Position Column -->
-              <ng-container matColumnDef="position">
-                <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]=" element.isDone ? 'line' :  ''"> {{element.name}} </mat-cell>
               </ng-container>
           
               <!-- Name Column -->
-              <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              <ng-container matColumnDef="description">
+                <mat-header-cell *matHeaderCellDef > Descrição </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]=" element.isDone ? 'line' :  ''"> {{element.description}} </mat-cell>
               </ng-container>
           
               <!-- Weight Column -->
-              <ng-container matColumnDef="weight">
-                <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+              <ng-container matColumnDef="isDone">
+                <mat-header-cell *matHeaderCellDef> Finalizado </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]=" element.isDone ? 'line' :  ''"> {{element.isDone ? "Sim": "Não"}} </mat-cell>
               </ng-container>
           
               <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+              <ng-container matColumnDef="createdAt">
+                <mat-header-cell *matHeaderCellDef> Criado em </mat-header-cell>
+                <mat-cell *matCellDef="let element" [ngClass]=" element.isDone ? 'line' :  ''"> {{element.createdAt | date: 'dd/MM/yyyy HH:mm ss'}} </mat-cell>
               </ng-container>
           
               <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
