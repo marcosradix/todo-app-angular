@@ -3,10 +3,15 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "postinstall": "ng build --aot --prod",
+    "build": "ng build --aot ",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.5.3"
   },
   "private": true,
   "dependencies": {
