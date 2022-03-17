@@ -17,7 +17,7 @@ import { StatusUpdateDto } from 'src/app/core/models/status-update-dto';
   styleUrls: ['./todo.component.css']
 })
 export class TodoComponent implements OnInit, AfterContentChecked {
-  displayedColumns = ['select', 'name', 'description', 'isDone', 'createdAt', 'actions'];
+  displayedColumns = ['select', '#', 'name', 'description', 'isDone', 'createdAt', 'actions'];
   data: TodoModel[] = [];
   dataSource = new MatTableDataSource<TodoModel>(this.data);
   taskId?: number;
@@ -41,7 +41,6 @@ export class TodoComponent implements OnInit, AfterContentChecked {
     return numSelected === numRows;
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
       this.selection.clear() :

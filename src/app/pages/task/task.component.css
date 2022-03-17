@@ -16,3 +16,8 @@
 .mat-column-select {
   overflow: initial;
 }
+
+.line
+{
+  text-decoration: line-through;
+}
